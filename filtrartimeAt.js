@@ -1,10 +1,10 @@
 var json = require('./_data.json'),
-    cheerio = require('cheerio'),
-    request = require('request'),
-    _ = require('lodash'),
-    linkes = [],
-    moment = require('moment'),
-    fs = require('fs');
+		cheerio = require('cheerio'),
+		request = require('request'),
+		_ = require('lodash'),
+		linkes = [],
+		moment = require('moment'),
+		fs = require('fs');
 
 /*json.forEach(function(data) {
   linkes.push(data.url);
@@ -23,7 +23,8 @@ linkes.forEach(function(data) {
   })
 })*/
 
-var  pub = [ 'Publicado em 25 de mar de 2013',
+var  pub = [ 
+  'Publicado em 25 de mar de 2013',
   'Publicado em 25 de mar de 2013',
   'Publicado em 25 de mar de 2013',
   'Publicado em 7 de jun de 2013',
