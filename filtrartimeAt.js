@@ -1,29 +1,13 @@
-var json = require('./_data.json'),
-		cheerio = require('cheerio'),
-		request = require('request'),
-		_ = require('lodash'),
-		linkes = [],
-		moment = require('moment'),
-		fs = require('fs');
+const json = require('./_data.json'),
+  cheerio = require('cheerio'),
+  request = require('request'),
+  _ = require('lodash'),
+  linkes = [],
+  moment = require('moment'),
+  fs = require('fs');
 
-/*json.forEach(function(data) {
-  linkes.push(data.url);
-})
-*/
-/*var time = [];
-var i = 0;
-linkes.forEach(function(data) {
-  request(data,
-    function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        $ = cheerio.load(body);
-        time.push($(".watch-time-text").text())
-        console.log(time);
-      }   
-  })
-})*/
 
-var  pub = [ 
+const  pub = [ 
   'Publicado em 25 de mar de 2013',
   'Publicado em 25 de mar de 2013',
   'Publicado em 25 de mar de 2013',
@@ -107,38 +91,38 @@ var  pub = [
   'Publicado em 30 de dez de 2014',
   'Publicado em 19 de fev de 2015',
   'Publicado em 10 de jan de 2015' ]
-datas = []
-var mon = ['jan' , 'fev' , 'mar' , 'abr' , 'mai',
-            'jun' , 'jul' , 'ago' , 'set' , 'out',
-            'nov' , 'dez'];          
+
+const datas = []
+
+const mon = ['jan' , 'fev' , 'mar' , 'abr' , 'mai',
+  'jun' , 'jul' , 'ago' , 'set' , 'out',
+  'nov' , 'dez'];          
 
 pub.forEach(function(data) {
-  var data = data.substr(13).split(' ');
-  var mes = (mon.indexOf(data[2])+1) <= 9?
-  '0'+(mon.indexOf(data[2])+1):+(mon.indexOf(data[2])+1);
+  const data = data.substr(13).split(' ');
+  const mes = (mon.indexOf(data[2])+1) <= 9?
+    '0'+(mon.indexOf(data[2])+1):+(mon.indexOf(data[2])+1);
   datas.push(data[4]+'/'+mes+'/'+data[0]);
 })
 
-var completeDate = []
+const completeDate = [];
+
 datas.forEach(function(data) {
   completeDate.push(new Date(data));
 })
 
-completeDate = completeDate.sort(
-  function(a, b) {
-   return new Date(a) - new Date(b) 
- })
+completeDate = completeDate.sort((a, b) => new Date(a) - new Date(b));
 
-var DateInOrder = [];
+const DateInOrder = [];
 
 completeDate.forEach(function(data , index) {
   json[index].published_at = moment(data).format("YYYYMMDD");
 });
-json[83].published_at = json[82].published_at;
-salvarJson(json);
 
-function salvarJson(data) {
-  fs.writeFile("_data1.json", JSON.stringify(data, null, 4), function(err){
-    console.log(err || "success");
-  })
-};
+json[83].published_at = json[82].published_at;
+
+salconstJson(json);
+
+function salconstJson (data) {
+  fs.writeFile("_data1.json", JSON.stringify(data, null, 4));
+}
